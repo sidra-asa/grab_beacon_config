@@ -20,7 +20,10 @@ categories = {"safe"}
 author = "Wade Hickey, Zach Stanford"
 
 -- Rule
-portrule = shortport.http
+portrule = function(host, port)
+    return port.protocol == "tcp"
+           and port.state == "open"
+end
 
 -- Action
 local function generate_checksum(input)
